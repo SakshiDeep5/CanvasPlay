@@ -9,23 +9,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Writing Board</h1>
-    <div class="tools">
-    <p>Drawing Tools</p>
+    <h1 id="heading">Writing Board</h1>
+    <div id="tools">
     <div class="colorInput">
         <label for="strokeColor">Color</label>
-        <input id="strokeColor" type="color"/>
+        <input id="strokeColor" type="color" value="#000000"/>
     </div>
     <div class="brushSizeInput">
-        <label for="brushSize">Brush Size</label>
-        <input id="brushSize" type="range"/>
+        <label for="brushSize">Brush</label>
+        <input id="brushSize" type="range" value="5" min="1" max="50"/>
     </div>
 
-    <button id="pen"><span class="material-symbols-outlined">ink_pen</span>Pen</button>
-    <button id="eraser"><span class="material-symbols-outlined">ink_eraser</span>Eraser</button>
-    <button id="square"><span class="material-symbols-outlined">crop_square</span>Draw Square</button>
-    <button id="cleanup"><span class="material-symbols-outlined">brush</span>Full Screen Cleanup</button>
-    <button id="downloadImage"><span class="material-symbols-outlined">download</span>Download Image</button>
+    <button class="button activeBtn" id="pen"><span class="material-symbols-outlined">ink_pen</span>Pen</button>
+    <button class="button" id="eraser"><span class="material-symbols-outlined">ink_eraser</span>Eraser</button>
+    <button class="button" id="square"><span class="material-symbols-outlined">crop_square</span>Draw Square</button>
+    <button class="button" id="cleanup"><span class="material-symbols-outlined">brush</span>Full Screen Cleanup</button>
+    <button class="button" id="downloadImage"><span class="material-symbols-outlined">download</span>Download Image</button>
     </div>
 
     <canvas id="canvas"></canvas>
