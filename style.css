@@ -50,10 +50,10 @@ body {
     background-color: #C6E7FF;
 }
 
-/* .activeBtn {
-  background-color: rgb(246, 196, 105);
+.activeBtn {
+  background-color: #5FACD3;
   border: 1px solid #000000;
-} */
+}
 
 #canvas {
   margin-top: 10px;

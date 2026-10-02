@@ -3,8 +3,8 @@ const brushSizeInput= document.getElementById("brushSize");
 const penBtn= document.getElementById("pen");
 const eraserBtn= document.getElementById("eraser");
 const squareBtn= document.getElementById("square");
-const clearUpBtn= document.getElementById("clearup");
-const downloadBtn = document.getElementById("downloadImage");
+const cleanUpBtn= document.getElementById("cleanup");
+const downloadImageBtn = document.getElementById("downloadImage");
 
 const canvas= document.getElementById("canvas");
 //this step will give us a object
@@ -14,6 +14,8 @@ canvas.height = 500;
 canvas.width = 1000;
 
 const ctx= canvas.getContext("2d");
+
+let currentTool = "pen";
 
 console.log(ctx);
 
@@ -30,7 +32,7 @@ function startDraw(e) {
 
 function draw(e) {
     if(isDrawing == false) return;
-    ctx.strokeStyle = colorInput.value;
+    ctx.strokeStyle = currentTool === "eraser" ? "#ffffff" : colorInput.value;
     ctx.lineWidth = brushSizeInput.value;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
@@ -38,10 +40,37 @@ function draw(e) {
     ctx.moveTo(e.offsetX, e.offsetY);
 }
 
-
-function stopDraw() {
+function stopDraw(e) {
     isDrawing = false;
 }
+
+penBtn.addEventListener("click", function () {
+    currentTool = "pen";
+    eraserBtn.classList.remove("activeBtn");
+    squareBtn.classList.remove("activeBtn");
+    penBtn.classList.add("activeBtn");
+});
+
+eraserBtn.addEventListener("click", function (){
+    currentTool = "eraser";
+    penBtn.classList.remove("activeBtn");
+    squareBtn.classList.remove("activeBtn");
+    eraserBtn.classList.add("activeBtn");
+});
+
+cleanUpBtn.addEventListener("click", function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+downloadImageBtn.addEventListener("click", function () {
+    const link = canvas.toDataURL("image/png");
+    const anchorTag = document.createElement("a");
+    anchorTag.href = link;
+    anchorTag.download = "Drawing.png";
+    document.body.appendChild(anchorTag);
+    anchorTag.click();
+    document.body.removeChild(anchorTag);
+});
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", draw);
