@@ -30,6 +30,8 @@ function startDraw(e) {
 
 function draw(e) {
     if(isDrawing == false) return;
+    ctx.strokeStyle = colorInput.value;
+    ctx.lineWidth = brushSizeInput.value;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     ctx.beginPath();
