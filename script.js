@@ -24,14 +24,23 @@ ctx.lineCap = "round";
 ctx.strokeStyle= "#000000";
 let isDrawing = false;
 
+let startX = 0;
+let startY = 0;
+
 function startDraw(e) {
     isDrawing = true;
+
+    if(currentTool === 'square') {
+        startX = e.offsetX;
+        startY = e.offsetY;
+        return;
+    }
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
 }
 
 function draw(e) {
-    if(isDrawing == false) return;
+    if(isDrawing == false || currentTool == "square") return;
     ctx.strokeStyle = currentTool === "eraser" ? "#ffffff" : colorInput.value;
     ctx.lineWidth = brushSizeInput.value;
     ctx.lineTo(e.offsetX, e.offsetY);
@@ -41,6 +50,16 @@ function draw(e) {
 }
 
 function stopDraw(e) {
+    if(currentTool === 'square') {
+        let endX = e.offsetX;
+        let endY = e.offsetY;
+        let width = endX - startX;
+        let height = endY - startY;
+        ctx.beginPath();
+        ctx.rect(startX, startY, width, height);
+        ctx.stroke();
+        return;
+    }    
     isDrawing = false;
 }
 
@@ -56,6 +75,13 @@ eraserBtn.addEventListener("click", function (){
     penBtn.classList.remove("activeBtn");
     squareBtn.classList.remove("activeBtn");
     eraserBtn.classList.add("activeBtn");
+});
+
+squareBtn.addEventListener("click", function () {
+    currentTool = "square";
+    penBtn.classList.remove("activeBtn");
+    eraserBtn.classList.remove("activeBtn");
+    squareBtn.classList.add("activeBtn");
 });
 
 cleanUpBtn.addEventListener("click", function () {
