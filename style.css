@@ -17,7 +17,7 @@ body {
 
 #tools {
     margin-top: 10px;
-    width: 90vw;
+    width: 70vw;
     background-color:lightskyblue;
     display:flex;
     height: 12vh;
@@ -27,7 +27,7 @@ body {
 }
 
 .colorInput{
-    width: 8%;
+    width: 10%;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -50,10 +50,10 @@ body {
     background-color: #C6E7FF;
 }
 
-.activeBtn {
+/* .activeBtn {
   background-color: rgb(246, 196, 105);
   border: 1px solid #000000;
-}
+} */
 
 #canvas {
   margin-top: 10px;
